@@ -19,8 +19,8 @@
  */
 
 @theme inline {
-  --font-sans: "Nunito", sans-serif;
-  --font-hand: "Caveat", cursive;
+  --font-sans: "Nunito", "Noto Color Emoji", sans-serif;
+  --font-hand: "Caveat", "Noto Color Emoji", cursive;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
