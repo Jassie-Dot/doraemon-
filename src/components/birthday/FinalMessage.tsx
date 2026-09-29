@@ -1,7 +1,7 @@
 import type { PhotoMemory } from "@/config/birthday";
 import { Reveal } from "./Reveal";
 
-export function FinalMemory({ photo }: { photo?: PhotoMemory }) {
+export function FinalMemory({ photo }: { photo: PhotoMemory | undefined }) {
   return (
     <section className="section-shell text-center">
       <Reveal><h2 className="section-title">and one last thing...</h2></Reveal>
