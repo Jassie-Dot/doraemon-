@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-sans: "Nunito", "Noto Color Emoji", sans-serif;
+  --font-hand: "Caveat", "Noto Color Emoji", cursive;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +61,37 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-overlay: var(--overlay);
+  --color-blush: var(--blush);
+  --color-lilac: var(--lilac);
+  --color-paper: var(--paper);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.75rem;
+  --background: oklch(0.975 0.012 77);
+  --foreground: oklch(0.29 0.035 355);
+  --card: oklch(0.995 0.007 72);
+  --card-foreground: oklch(0.29 0.035 355);
+  --popover: oklch(0.995 0.007 72);
+  --popover-foreground: oklch(0.29 0.035 355);
+  --primary: oklch(0.63 0.13 3);
+  --primary-foreground: oklch(0.99 0.005 70);
+  --secondary: oklch(0.91 0.043 348);
+  --secondary-foreground: oklch(0.36 0.055 354);
+  --muted: oklch(0.94 0.018 68);
+  --muted-foreground: oklch(0.49 0.035 355);
+  --accent: oklch(0.91 0.046 315);
+  --accent-foreground: oklch(0.38 0.06 325);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.87 0.029 6);
+  --input: oklch(0.87 0.029 6);
+  --ring: oklch(0.63 0.13 3);
+  --overlay: oklch(0.22 0.025 350 / 82%);
+  --blush: oklch(0.9 0.055 355);
+  --lilac: oklch(0.9 0.047 312);
+  --paper: oklch(0.985 0.018 78);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +150,96 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
   }
+
+  html { scroll-behavior: smooth; }
+  button { font: inherit; }
+}
+
+@utility font-hand { font-family: var(--font-hand); }
+
+@utility section-shell {
+  padding: 7rem 1.25rem;
+  @media (min-width: 640px) { padding-block: 9rem; }
+}
+
+@utility section-title {
+  margin-top: 0.35rem;
+  font-family: var(--font-hand);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--color-foreground);
+  @media (min-width: 640px) { font-size: 4.5rem; }
+}
+
+@utility section-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-primary);
+}
+
+@utility section-subtitle {
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--color-muted-foreground);
+}
+
+.birthday-site {
+  background:
+    radial-gradient(circle at 10% 6%, color-mix(in oklab, var(--blush) 55%, transparent) 0, transparent 21rem),
+    radial-gradient(circle at 94% 27%, color-mix(in oklab, var(--lilac) 52%, transparent) 0, transparent 20rem),
+    var(--background);
+}
+
+.reveal { opacity: 0; transform: translateY(1.4rem); transition: opacity 700ms ease, transform 700ms ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.sparkle-field span, .final-confetti span { position: absolute; color: var(--primary); opacity: 0.42; animation: float 5.5s ease-in-out infinite; }
+.sparkle-field span:nth-child(1) { top: 12%; left: 9%; font-size: 1.8rem; }
+.sparkle-field span:nth-child(2) { top: 21%; right: 14%; animation-delay: -1s; }
+.sparkle-field span:nth-child(3) { top: 67%; left: 14%; font-size: 1.3rem; animation-delay: -2s; }
+.sparkle-field span:nth-child(4) { bottom: 13%; right: 11%; font-size: 1.9rem; animation-delay: -3s; }
+.sparkle-field span:nth-child(5) { top: 48%; right: 5%; animation-delay: -4s; }
+.sparkle-field span:nth-child(6) { top: 43%; left: 5%; animation-delay: -2.5s; }
+.heart-pulse { color: var(--primary); animation: heartPulse 1.8s ease-in-out infinite; }
+.scroll-arrow { animation: bounceSoft 1.7s ease-in-out infinite; }
+
+.polaroid { position: relative; display: block; width: 100%; cursor: zoom-in; background: var(--card); padding: 0.7rem 0.7rem 1.3rem; border-radius: 0.4rem; box-shadow: 0 0.8rem 2rem color-mix(in oklab, var(--foreground) 12%, transparent); transition: transform 250ms ease, box-shadow 250ms ease; }
+.polaroid:hover { transform: rotate(0deg) translateY(-0.35rem); box-shadow: 0 1.2rem 2.5rem color-mix(in oklab, var(--foreground) 16%, transparent); }
+.polaroid img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; border-radius: 0.2rem; margin-bottom: 1rem; }
+.tape, .letter-tape { position: absolute; z-index: 2; width: 5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(-2deg); background: color-mix(in oklab, var(--blush) 65%, transparent); backdrop-filter: blur(2px); }
+.memory-placeholder { border: 1px dashed var(--border); border-radius: 1rem; padding: 2.5rem 1.5rem; background: color-mix(in oklab, var(--card) 65%, transparent); }
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1rem; background: var(--overlay); backdrop-filter: blur(14px); animation: lightboxIn 220ms ease-out; }
+.video-card { position: relative; width: 100%; overflow: hidden; border-radius: 1rem; background: var(--card); box-shadow: 0 0.7rem 1.8rem color-mix(in oklab, var(--foreground) 10%, transparent); text-align: left; transition: transform 250ms ease; }
+.video-card:hover { transform: translateY(-0.3rem); }
+.video-card video { aspect-ratio: 9 / 12; width: 100%; object-fit: cover; }
+.play-badge { position: absolute; top: 42%; left: 50%; display: grid; height: 3.5rem; width: 3.5rem; transform: translate(-50%, -50%); place-items: center; border-radius: 999px; background: color-mix(in oklab, var(--card) 88%, transparent); color: var(--primary); box-shadow: 0 0.5rem 1.5rem color-mix(in oklab, var(--foreground) 18%, transparent); transition: transform 200ms ease; }
+.video-card:hover .play-badge { transform: translate(-50%, -50%) scale(1.08); }
+.interlude { background: color-mix(in oklab, var(--lilac) 35%, var(--background)); }
+.letter-paper { position: relative; padding: 3.5rem 1.5rem 3rem; border: 1px solid color-mix(in oklab, var(--border) 70%, transparent); border-radius: 0.5rem; background-color: var(--paper); background-image: repeating-linear-gradient(0deg, transparent, transparent 31px, color-mix(in oklab, var(--primary) 8%, transparent) 32px); box-shadow: 0 1.2rem 3rem color-mix(in oklab, var(--foreground) 12%, transparent); }
+.letter-paper p { position: relative; }
+@media (min-width: 640px) { .letter-paper { padding: 5rem 4.5rem 4rem; } }
+.letter-tape { width: 6rem; background: color-mix(in oklab, var(--lilac) 60%, transparent); }
+.final-photo { position: relative; padding: 0.7rem; background: var(--card); border-radius: 0.6rem; box-shadow: 0 1rem 2.5rem color-mix(in oklab, var(--foreground) 14%, transparent); transform: rotate(1.5deg); }
+.final-photo img { width: 100%; max-height: 34rem; object-fit: cover; border-radius: 0.35rem; }
+.final-section { background: linear-gradient(155deg, color-mix(in oklab, var(--blush) 54%, var(--background)), color-mix(in oklab, var(--paper) 82%, var(--lilac))); }
+.final-confetti span:nth-child(1) { top: 16%; left: 8%; font-size: 2rem; }
+.final-confetti span:nth-child(2) { top: 28%; right: 9%; animation-delay: -1.5s; }
+.final-confetti span:nth-child(3) { bottom: 20%; left: 13%; animation-delay: -3s; }
+.final-confetti span:nth-child(4) { bottom: 12%; right: 15%; font-size: 1.4rem; animation-delay: -2s; }
+.final-confetti span:nth-child(5) { top: 8%; left: 49%; animation-delay: -4s; }
+
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-0.8rem) rotate(7deg); } }
+@keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+@keyframes bounceSoft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(0.35rem); } }
+@keyframes lightboxIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
